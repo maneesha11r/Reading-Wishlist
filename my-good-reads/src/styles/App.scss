@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -23,19 +25,28 @@ input {
   padding: $spacing-xxs;
 }
 
-a {
+button {
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+a, button {
   cursor: pointer;
   color: $blue-accent;
 
   &:hover {
     color: $blue-dark;
   }
-
+  &:focus {
+    outline: none;
+  }
   h1 {
     flex: 1;
   }
 }
-
+ul, li {
+  list-style: none;
+}
 .header {
   position: sticky;
   top: 0;
@@ -119,12 +130,111 @@ form {
   justify-content:space-around;
   align-items: stretch;
 }
-
+.left-pane {
+  float: left;
+  width: 70%;
+}
+.right-pane {
+  float: right;
+  width: 30%;
+  padding-left: 10px;
+}
 .search-params {
   flex-grow: 3;
-
 }
 .sidebar {
   flex-grow: 1;
-
+  flex-shrink: 0;
+  margin-left: $spacing-xl;
+  flex-basis: 30%;
+}
+.loading-text {
+  margin: 40px 0;
+  text-align: center;
+}
+.wishlist-title, .wishlist-items {
+  border: 1px solid $gray40;
+  padding: 5px 10px;
+}
+.wishlist-items {
+  margin-top: $spacing-sm;
+  > li {
+    border-bottom: 1px solid $gray40;
+    padding-bottom: $spacing-sm;
+    margin-bottom: $spacing-sm;
+    &:last-child {
+      border: none;
+      margin-bottom: 0;
+    }
+  }
+}
+.books-list {
+  > li {
+    display: flex;
+    border-bottom: 1px solid $gray70;
+      margin-top: $spacing-sm;
+      padding-bottom: $spacing-sm;
+    > .image-wrap {
+      width: 120px;
+      flex-shrink: 0;
+      flex-grow: 0;
+      text-align: center;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+      .wishlist-link {
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+    > .content {
+      padding-left: $spacing-xs;
+      p {
+        margin-top: 10px;
+      }
+      > .title {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      > .subtitle {
+        font-size: 18px;
+      }
+      > .desc {
+        font-size: 16px;
+      }
+      > .author {
+        font-size: 14px;
+      }
+      > .publisher {
+        font-size: 14px;
+        font-style: italic;
+      }
+      > .date {
+        font-size: 14px;
+        font-style: italic;
+      }
+    }
+    &:last-child {
+      border: none;
+    }
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .sidebar {
+    margin-left: $spacing-med;
+  }
+}
+@media screen and (max-width: 767px) {
+  .book--container {
+    flex-wrap: wrap;
+  }
+  .search-params {
+    width: 100%;
+    margin-top: $spacing-sm;
+  }
+  .sidebar {
+    margin-left: 0;
+    order: -1;
+  }
 }
